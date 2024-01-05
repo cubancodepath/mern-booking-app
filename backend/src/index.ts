@@ -3,6 +3,7 @@ import "dotenv/config";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 
+import authRoutes from "./routes/auth";
 import userRoutes from "./routes/users";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
@@ -17,6 +18,7 @@ app.get("/api/test", async (req: Request, res: Response) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(8000, () => {
   console.log("Server is running on http://localhost:8000");
